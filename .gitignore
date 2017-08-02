@@ -1,0 +1,4 @@
+MANIFEST
+dist/
+sample/dxlclient.config
+*.pyc
