@@ -1,9 +1,10 @@
+import logging
 import os
 import sys
 
 from dxlbootstrap.util import MessageUtils
-from dxlclient.client_config import DxlClientConfig
 from dxlclient.client import DxlClient
+from dxlclient.client_config import DxlClientConfig
 
 root_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(root_dir + "/../..")
@@ -32,9 +33,9 @@ with DxlClient(config) as dxl_client:
     # Create client wrapper
     client = DomainToolsApiClient(dxl_client)
 
-    # Invoke the example method
-    resp_dict = client.my_example_method()
-    
+    # Invoke 'reverse_name_server' method
+    resp_dict = client.reverse_name_server("domaintools.net", 35)
+
     # Print out the response (convert dictionary to JSON for pretty printing)
     print "Response:\n{0}".format(
         MessageUtils.dict_to_json(resp_dict, pretty_print=True))
