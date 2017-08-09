@@ -33,9 +33,29 @@ with DxlClient(config) as dxl_client:
     # Create client wrapper
     client = DomainToolsApiClient(dxl_client)
 
-    # Invoke 'account_information' method on service
+    # Invoke 'account_information' method on service, in default (dict) output format
     resp_dict = client.account_information()
-    
-    # Print out the response (convert dictionary to JSON for pretty printing)
-    print "Response:\n{0}".format(
+
+    # Print out the response
+    print "Response in default output format:\n{0}".format(
         MessageUtils.dict_to_json(resp_dict, pretty_print=True))
+
+    # Invoke 'account_information' method on service, in 'json' output
+    resp_json = client.account_information(out_format="json")
+
+    # Print out the response
+    print "Response in json output format:\n{0}".format(
+        MessageUtils.dict_to_json(MessageUtils.json_to_dict(resp_json),
+                                  pretty_print=True))
+
+    # Invoke 'account_information' method on service, in 'xml' output
+    resp_xml = client.account_information(out_format="xml")
+
+    # Print out the response
+    print "Response in xml output format:\n{0}".format(resp_xml)
+
+    # Invoke 'account_information' method on service, in 'html' output
+    resp_html = client.account_information(out_format="html")
+
+    # Print out the response
+    print "Response in html output format:\n{0}".format(resp_html)
