@@ -314,43 +314,66 @@ class DomainToolsApiClient(Client):
         DomainToolsApiClient._add_string_param_by_name(
             req_dict, DomainToolsApiClient._PARAM_DOMAIN, domain, delimiter)
 
-    def _invoke_service(self, req_dict, topic):
+    def _invoke_service(self, req_dict, topic, out_format):
         """
         Invokes the DomainTools DXL service.
 
         :param req_dict: Dictionary containing request information
         :param topic: The DomainTools DXL topic to invoke
-        :return: A dictionary containing the response
+        :param out_format: The format in which the response output should be
+            rendered.  Available formats include ``dict``, ``json``, ``xml``,
+            and ``html``. For ``dict``, the return type is a Python dictionary.
+            For the other formats, the return type is a ``unicode``.
+        :return: Response data.
+        :rtype: dict or unicode
         """
 
         # Create the DXL request message
         request = Request(topic)
 
+        # Set the output format for the request. If the caller requested "dict"
+        # as the output format, use "json" to simplify the conversion of the
+        # output into a Python dictionary.
+        req_dict_with_format = dict(req_dict)
+        req_dict_with_format["format"] = "json" \
+            if out_format == "dict" else out_format
+
         # Set the payload on the request message (Python dictionary to JSON payload)
-        MessageUtils.dict_to_json_payload(request, req_dict)
+        MessageUtils.dict_to_json_payload(request, req_dict_with_format)
 
         # Perform a synchronous DXL request
         response = self._dxl_sync_request(request)
 
-        # Convert the JSON payload in the DXL response message to a Python dictionary
-        # and return it.
-        return MessageUtils.json_payload_to_dict(response)
+        # If the caller requested "dict" as the output format, convert the JSON
+        # payload in the DXL response message to a Python dictionary and return
+        # it. Otherwise, just decode the raw payload per whatever other format
+        # was requested and return it.
+        return MessageUtils.json_payload_to_dict(response) \
+            if out_format == "dict" else \
+            MessageUtils.decode_payload(response)
 
-    def account_information(self):
+    def account_information(self, out_format="dict"):
         """
         Retrieve information for the DomainTools API user account. See
         `DXL service method <https://github.com/opendxl/opendxl-domaintools-service-python/wiki/Service-Methods#account-information>`__
         and `DomainTools API <https://www.domaintools.com/resources/api-documentation/account-information/>`__
         documentation for more information.
 
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_ACCOUNT_INFO)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_ACCOUNT_INFO,
+                                    out_format)
 
-    def brand_monitor(self, query, exclude=None, domain_status=None, days_back=None):
+    def brand_monitor(self, query, exclude=None, domain_status=None,
+                      days_back=None, out_format="dict"):
         """
         Retrieves information for domains which match a customer's brand or
         monitored word/string. See
@@ -371,8 +394,13 @@ class DomainToolsApiClient(Client):
         :param int days_back: [``optional``] : Use this parameter in exceptional
             circumstances where you need to search domains registered prior to
             the current date.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query, "|")
@@ -380,9 +408,10 @@ class DomainToolsApiClient(Client):
         self._add_domain_status_param(req_dict, domain_status)
         self._add_days_back_param(req_dict, days_back)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_BRAND_MONITOR)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_BRAND_MONITOR,
+                                    out_format)
 
-    def domain_profile(self, query):
+    def domain_profile(self, query, out_format="dict"):
         """
         Retrieves a profile for the specified domain name. See
         `DXL service method <https://github.com/opendxl/opendxl-domaintools-service-python/wiki/Service-Methods#domain-profile>`__
@@ -390,19 +419,25 @@ class DomainToolsApiClient(Client):
         documentation for more information.
 
         :param str query: Domain name for which to retrieve profile information.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
 
         req_dict = {}
         self._add_query_param(req_dict, query)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_DOMAIN_PROFILE)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_DOMAIN_PROFILE,
+                                    out_format)
 
     def domain_search(self, query, exclude_query=None, max_length=None,
                       min_length=None, has_hyphen=None, has_number=None,
                       active_only=None, deleted_only=None, anchor_left=None,
-                      anchor_right=None, page=None):
+                      anchor_right=None, page=None, out_format="dict"):
         """
         Retrieves information for domains which match a search string. See
         `DXL service method <https://github.com/opendxl/opendxl-domaintools-service-python/wiki/Service-Methods#domain-search>`__
@@ -432,8 +467,13 @@ class DomainToolsApiClient(Client):
             end with the query term.
         :param int page: [``optional``] : Sets the page of results to retrieve
             from the server.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query, " ")
@@ -458,9 +498,10 @@ class DomainToolsApiClient(Client):
         DomainToolsApiClient._add_boolean_param_by_name(
             req_dict, DomainToolsApiClient._PARAM_ANCHOR_RIGHT, anchor_right)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_DOMAIN_SEARCH)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_DOMAIN_SEARCH,
+                                    out_format)
 
-    def domain_suggestions(self, query):
+    def domain_suggestions(self, query, out_format="dict"):
         """
         Retrieves list of domain names which are similar to words in the
         supplied ``query`` parameter. See
@@ -469,15 +510,22 @@ class DomainToolsApiClient(Client):
         documentation for more information.
 
         :param str query: Domain name for which to retrieve suggestions.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query, " ")
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_DOMAIN_SUGGESTIONS)
+        return self._invoke_service(req_dict,
+                                    self._REQ_TOPIC_DOMAIN_SUGGESTIONS,
+                                    out_format)
 
-    def hosting_history(self, query):
+    def hosting_history(self, query, out_format="dict"):
         """
         Retrieves a list of changes which have occurred in a domain name's
         registrar, IP address, and name servers. See
@@ -486,15 +534,21 @@ class DomainToolsApiClient(Client):
         documentation for more information.
 
         :param str query: Domain name to retrieve hosting history for.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_HOSTING_HISTORY)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_HOSTING_HISTORY,
+                                    out_format)
 
-    def ip_monitor(self, query, days_back=None, page=None):
+    def ip_monitor(self, query, days_back=None, page=None, out_format="dict"):
         """
         Retrieves activity for monitored domains which match the ip address
         supplied in the ``query`` parameter. See
@@ -508,19 +562,26 @@ class DomainToolsApiClient(Client):
             the current date.
         :param int page: [``optional``] : Sets the page of results to retrieve
             from the server.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query)
         self._add_days_back_param(req_dict, days_back)
         self._add_page_param(req_dict, page)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_IP_MONITOR)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_IP_MONITOR,
+                                    out_format)
 
     def ip_registrant_monitor(self, query, days_back=None,
                               search_type=None, server=None, country=None,
-                              org=None, page=None, include_total_count=None):
+                              org=None, page=None, include_total_count=None,
+                              out_format="dict"):
         """
         Retrieves information for IP ranges which match one of the terms in the
         supplied ``query`` parameter. See
@@ -548,8 +609,13 @@ class DomainToolsApiClient(Client):
         :param bool include_total_count: [``optional``] : Return the total
             number of results for a query. This should typically be used only
             for the first page of a large result set.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query, " ")
@@ -564,10 +630,13 @@ class DomainToolsApiClient(Client):
         DomainToolsApiClient._add_string_param_by_name(
             req_dict, DomainToolsApiClient._PARAM_ORG, org)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_IP_REGISTRANT_MONITOR)
+        return self._invoke_service(req_dict,
+                                    self._REQ_TOPIC_IP_REGISTRANT_MONITOR,
+                                    out_format)
 
     def iris(self, domain=None, ip=None, email=None, nameserver=None,
-             registrar=None, registrant=None, registrant_org=None):
+             registrar=None, registrant=None, registrant_org=None,
+             out_format="dict"):
         """
         Retrieves Iris pivot engine domain data for any provided search terms,
         ANDed together. See
@@ -592,8 +661,13 @@ class DomainToolsApiClient(Client):
             registrant field.
         :param str registrant_org: [``optional``] : Word search on the Whois
             registrant organization field.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_domain_param(req_dict, domain, ",")
@@ -610,9 +684,10 @@ class DomainToolsApiClient(Client):
         DomainToolsApiClient._add_string_param_by_name(
             req_dict, DomainToolsApiClient._PARAM_REGISTRANT_ORG, registrant_org)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_IRIS)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_IRIS, out_format)
 
-    def name_server_monitor(self, query, days_back=None, page=None):
+    def name_server_monitor(self, query, days_back=None, page=None,
+                            out_format="dict"):
         """
         Retrieves activity for monitored Name Servers which match the hostname
         supplied in the ``query`` parameter. See
@@ -627,17 +702,24 @@ class DomainToolsApiClient(Client):
             the current date.
         :param int page: [``optional``] : Sets the page of results to retrieve
             from the server.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query)
         self._add_days_back_param(req_dict, days_back)
         self._add_page_param(req_dict, page)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_NAME_SERVER_MONITOR)
+        return self._invoke_service(req_dict,
+                                    self._REQ_TOPIC_NAME_SERVER_MONITOR,
+                                    out_format)
 
-    def parsed_whois(self, query):
+    def parsed_whois(self, query, out_format="dict"):
         """
         Retrieves parsed information extracted from the raw Whois record for
         the domain supplied in the ``query`` parameter. See
@@ -647,15 +729,21 @@ class DomainToolsApiClient(Client):
 
         :param str query: Hostname of the Name Server to query. For example:
             ``dynect.net``.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_PARSED_WHOIS)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_PARSED_WHOIS,
+                                    out_format)
 
-    def phisheye(self, query, days_back=None):
+    def phisheye(self, query, days_back=None, out_format="dict"):
         """
         Retrieves daily monitor results from the DomainTools PhishEye product
         for the term supplied in the ``query`` parameter. See
@@ -667,16 +755,22 @@ class DomainToolsApiClient(Client):
         :param int days_back: [``optional``] : Use this parameter in exceptional
             circumstances where you need to search domains registered prior to
             the current date.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query)
         self._add_days_back_param(req_dict, days_back)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_PHISHEYE)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_PHISHEYE,
+                                    out_format)
 
-    def phisheye_term_list(self, include_inactive=None):
+    def phisheye_term_list(self, include_inactive=None, out_format="dict"):
         """
         Retrieves a list of terms setup for the DomainTools PhishEye product
         for this account. See
@@ -684,19 +778,28 @@ class DomainToolsApiClient(Client):
         and `DomainTools API <https://www.domaintools.com/resources/api-documentation/phisheye/>`__
         documentation for more information.
 
+        :param str query: Term for which the day's domains are desired.
         :param bool include_inactive: [``optional``] : Use this parameter to
             display terms that may have been inactivated in users' lists.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         DomainToolsApiClient._add_boolean_param_by_name(
             req_dict, DomainToolsApiClient._PARAM_INCLUDE_INACTIVE,
             include_inactive)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_PHISHEYE_TERM_LIST)
+        return self._invoke_service(req_dict,
+                                    self._REQ_TOPIC_PHISHEYE_TERM_LIST,
+                                    out_format)
 
-    def registrant_monitor(self, query, exclude=None, days_back=None, limit=None):
+    def registrant_monitor(self, query, exclude=None, days_back=None,
+                           limit=None, out_format="dict"):
         """
         Retrieves information from the ownership (Whois) records of domain names
         for search terms specified in the ``query`` parameter. See
@@ -714,8 +817,13 @@ class DomainToolsApiClient(Client):
             the current date.
         :param int limit: [``optional``] : Limit the number of matched domain
             names that are returned in your result set.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query, "|")
@@ -723,9 +831,11 @@ class DomainToolsApiClient(Client):
         self._add_days_back_param(req_dict, days_back)
         self._add_limit_param(req_dict, limit)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_REGISTRANT_MONITOR)
+        return self._invoke_service(req_dict,
+                                    self._REQ_TOPIC_REGISTRANT_MONITOR,
+                                    out_format)
 
-    def reputation(self, query, include_reasons=None):
+    def reputation(self, query, include_reasons=None, out_format="dict"):
         """
         Retrieves reputation information for the domain specified in the
         ``query`` parameter. See
@@ -736,8 +846,13 @@ class DomainToolsApiClient(Client):
         :param str query: Input domain for which the risk score is desired.
         :param bool include_reasons: [``optional``] : Return a list of reasons
             for the risk score determination.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query)
@@ -745,9 +860,10 @@ class DomainToolsApiClient(Client):
             req_dict, DomainToolsApiClient._PARAM_INCLUDE_REASONS,
             include_reasons)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_REPUTATION)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_REPUTATION,
+                                    out_format)
 
-    def reverse_ip(self, domain, limit=None):
+    def reverse_ip(self, domain, limit=None, out_format="dict"):
         """
         Retrieves a list of containers which share the same domain name. See
         `DXL service method <https://github.com/opendxl/opendxl-domaintools-service-python/wiki/Service-Methods#reverse-ip>`__
@@ -757,16 +873,22 @@ class DomainToolsApiClient(Client):
         :param str domain: Domain name for which the list of containers is desired.
         :param int limit: [``optional``] : Limit the number of matched domain
             names that are returned in your result set.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_domain_param(req_dict, domain)
         self._add_limit_param(req_dict, limit)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_REVERSE_IP)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_REVERSE_IP,
+                                    out_format)
 
-    def host_domains(self, ip, limit=None):
+    def host_domains(self, ip, limit=None, out_format="dict"):
         """
         Retrieves a list of containers which share the same IP address. See
         `DXL service method <https://github.com/opendxl/opendxl-domaintools-service-python/wiki/Service-Methods#host-domains>`__
@@ -776,17 +898,23 @@ class DomainToolsApiClient(Client):
         :param str ip: IP address for which the list of containers is desired.
         :param int limit: [``optional``] : Limit the number of matched domain
             names that are returned in your result set.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_ip_param(req_dict, ip)
         self._add_limit_param(req_dict, limit)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_HOST_DOMAINS)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_HOST_DOMAINS,
+                                    out_format)
 
     def reverse_ip_whois(self, query=None, ip=None, country=None, server=None,
-                         include_total_count=None, page=None):
+                         include_total_count=None, page=None, out_format="dict"):
         """
         Retrieves a list of IP ranges that are owned by an Organization.  Either
         an ``query`` or an ``ip`` parameter must be specified, but not both. See
@@ -816,8 +944,13 @@ class DomainToolsApiClient(Client):
             for the first page of a large result set.
         :param int page: [``optional``] : Sets the page of results to retrieve
             from the server.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query, " ")
@@ -827,9 +960,10 @@ class DomainToolsApiClient(Client):
         self._add_include_total_count_param(req_dict, include_total_count)
         self._add_page_param(req_dict, page)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_REVERSE_IP_WHOIS)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_REVERSE_IP_WHOIS,
+                                    out_format)
 
-    def reverse_name_server(self, query, limit=None):
+    def reverse_name_server(self, query, limit=None, out_format="dict"):
         """
         Retrieves a list of the domain names that share the same primary or
         secondary name server. See
@@ -840,16 +974,24 @@ class DomainToolsApiClient(Client):
         :param str query: Domain name or a name server to query.
         :param int limit: [``optional``] : Limit the number of matched domain
             names that are returned in your result set.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query)
         self._add_limit_param(req_dict, limit)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_REVERSE_NAME_SERVER)
+        return self._invoke_service(req_dict,
+                                    self._REQ_TOPIC_REVERSE_NAME_SERVER,
+                                    out_format)
 
-    def reverse_whois(self, query, exclude=None, scope=None, mode=None):
+    def reverse_whois(self, query, exclude=None, scope=None, mode=None,
+                      out_format="dict"):
         """
         Retrieves a list of the domain names that share the same Registrant
         Information. See
@@ -869,8 +1011,13 @@ class DomainToolsApiClient(Client):
             and retail price of the query if you have per-domain pricing access
             or ``purchase`` to include the complete list of domain names that
             match the query.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query, "|")
@@ -881,9 +1028,10 @@ class DomainToolsApiClient(Client):
         DomainToolsApiClient._add_string_param_by_name(
             req_dict, DomainToolsApiClient._PARAM_MODE, mode)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_REVERSE_WHOIS)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_REVERSE_WHOIS,
+                                    out_format)
 
-    def whois(self, query):
+    def whois(self, query, out_format="dict"):
         """
         Retrieves the most recent Whois record for the domain name or IP address
         provided in the ``query`` parameter. See
@@ -892,15 +1040,21 @@ class DomainToolsApiClient(Client):
         documentation for more information.
 
         :param str query: Domain name or IP address to query.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_WHOIS)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_WHOIS,
+                                    out_format)
 
-    def whois_history(self, query):
+    def whois_history(self, query, out_format="dict"):
         """
         Retrieves a list of historic Whois records for the domain name provided
         in the ``query`` parameter. See
@@ -909,10 +1063,16 @@ class DomainToolsApiClient(Client):
         documentation for more information.
 
         :param str query: Domain name to query.
+        :param str out_format: [``optional``] : The format in which the response
+            output should be rendered.  Available formats include ``dict``,
+            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
+            ``unicode``.
         :return: Response data.
-        :rtype: dict
+        :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query)
 
-        return self._invoke_service(req_dict, self._REQ_TOPIC_WHOIS_HISTORY)
+        return self._invoke_service(req_dict, self._REQ_TOPIC_WHOIS_HISTORY,
+                                    out_format)
