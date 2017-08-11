@@ -29,7 +29,31 @@ Configuration
 
 Basic
 
-    TODO: Provide samples documentation
+.. toctree::
+    :maxdepth: 1
+
+    basicaccountinformationexample
+    basicbrandmonitorexample
+    basicdomainprofileexample
+    basicdomainsearchexample
+    basicdomainsuggestionsexample
+    basichostinghistoryexample
+    basichostdomainsexample
+    basicipmonitorexample
+    basicipregistrantmonitorexample
+    basicirisexample
+    basicnameservermonitorexample
+    basicparsedwhoisexample
+    basicphisheyeexample
+    basicphisheyetermlistexample
+    basicregistrantmonitorexample
+    basicreputationexample
+    basicreverseipexample
+    basicreverseipwhoisexample
+    basicreversenameserverexample
+    basicreversewhoisexample
+    basicwhoisexample
+    basicwhoishistoryexample
 
 Python API
 ----------
