@@ -4,7 +4,7 @@ Basic Account Information Example
 This sample invokes and displays the results of a DomainTools
 "Account Information" via DXL. This sample also demonstrates how to request
 each of the different output formats that the DomainTools service supports:
-``dict`` (Python dictionary), ``json``, ``xml``, and ``html``.
+``dict`` (Python dictionary), ``json``, and ``xml``.
 
 For more information see:
     https://www.domaintools.com/resources/api-documentation/account-information/
@@ -104,8 +104,7 @@ which contains the results of the account information for the API user that
 the DomainTools DXL service uses.
 
 The sample code also demonstrates how to request to receive the response in the
-other formats that the DomainTools service supports (``json``, ``html``, and
-``xml``):
+other formats that the DomainTools service supports (``json`` and ``xml``):
 
     .. code-block:: python
 
@@ -122,12 +121,6 @@ other formats that the DomainTools service supports (``json``, ``html``, and
 
         # Print out the response
         print "Response in xml output format:\n{0}".format(resp_xml)
-
-        # Invoke 'account_information' method on service, in 'html' output
-        resp_html = client.account_information(out_format="html")
-
-        # Print out the response
-        print "Response in html output format:\n{0}".format(resp_html)
 
 
 For each of the response formats other than ``dict``, the response type is a

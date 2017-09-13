@@ -321,9 +321,9 @@ class DomainToolsApiClient(Client):
         :param req_dict: Dictionary containing request information
         :param topic: The DomainTools DXL topic to invoke
         :param out_format: The format in which the response output should be
-            rendered.  Available formats include ``dict``, ``json``, ``xml``,
-            and ``html``. For ``dict``, the return type is a Python dictionary.
-            For the other formats, the return type is a ``unicode``.
+            rendered.  Available formats include ``dict``, ``json``, and
+            ``xml``. For ``dict``, the return type is a Python dictionary. For
+            the other formats, the return type is a ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
         """
@@ -361,8 +361,8 @@ class DomainToolsApiClient(Client):
 
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -396,8 +396,8 @@ class DomainToolsApiClient(Client):
             the current date.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -421,8 +421,8 @@ class DomainToolsApiClient(Client):
         :param str query: Domain name for which to retrieve profile information.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -469,8 +469,8 @@ class DomainToolsApiClient(Client):
             from the server.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -512,8 +512,8 @@ class DomainToolsApiClient(Client):
         :param str query: Domain name for which to retrieve suggestions.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -536,8 +536,8 @@ class DomainToolsApiClient(Client):
         :param str query: Domain name to retrieve hosting history for.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -564,8 +564,8 @@ class DomainToolsApiClient(Client):
             from the server.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -611,8 +611,8 @@ class DomainToolsApiClient(Client):
             for the first page of a large result set.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -663,8 +663,8 @@ class DomainToolsApiClient(Client):
             registrant organization field.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -704,8 +704,8 @@ class DomainToolsApiClient(Client):
             from the server.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -731,8 +731,8 @@ class DomainToolsApiClient(Client):
             ``dynect.net``.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -757,8 +757,8 @@ class DomainToolsApiClient(Client):
             the current date.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -783,8 +783,8 @@ class DomainToolsApiClient(Client):
             display terms that may have been inactivated in users' lists.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -819,8 +819,8 @@ class DomainToolsApiClient(Client):
             names that are returned in your result set.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -848,8 +848,8 @@ class DomainToolsApiClient(Client):
             for the risk score determination.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -875,8 +875,8 @@ class DomainToolsApiClient(Client):
             names that are returned in your result set.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -900,8 +900,8 @@ class DomainToolsApiClient(Client):
             names that are returned in your result set.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -946,8 +946,8 @@ class DomainToolsApiClient(Client):
             from the server.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -976,8 +976,8 @@ class DomainToolsApiClient(Client):
             names that are returned in your result set.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -1013,8 +1013,8 @@ class DomainToolsApiClient(Client):
             match the query.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -1042,8 +1042,8 @@ class DomainToolsApiClient(Client):
         :param str query: Domain name or IP address to query.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -1065,8 +1065,8 @@ class DomainToolsApiClient(Client):
         :param str query: Domain name to query.
         :param str out_format: [``optional``] : The format in which the response
             output should be rendered.  Available formats include ``dict``,
-            ``json``, ``xml``, and ``html``. For ``dict``, the return type is a
-            Python dictionary. For the other formats, the return type is a
+            ``json``, and ``xml``. For ``dict``, the return type is a Python
+            dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
