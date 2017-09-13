@@ -60,8 +60,8 @@ The majority of the sample code is shown below:
             resp_dict = client.ip_monitor("77.55.53.233")
 
             # Print out the response (convert dictionary to JSON for pretty printing)
-            print "Response:\n{0}".format(
-                MessageUtils.dict_to_json(resp_dict, pretty_print=True))
+            print("Response:\n{}".format(
+                MessageUtils.dict_to_json(resp_dict, pretty_print=True)))
 
 
 Once a connection is established to the DXL fabric, a

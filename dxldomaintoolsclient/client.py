@@ -20,25 +20,30 @@ class DomainToolsApiClient(Client):
     #: The "domain search" DXL request topic
     _REQ_TOPIC_DOMAIN_SEARCH = "{0}/domain_search".format(_SERVICE_TYPE)
     #: The "domain suggestions" DXL request topic
-    _REQ_TOPIC_DOMAIN_SUGGESTIONS = "{0}/domain_suggestions".format(_SERVICE_TYPE)
+    _REQ_TOPIC_DOMAIN_SUGGESTIONS = "{0}/domain_suggestions".format(
+        _SERVICE_TYPE)
     #: The "hosting history" DXL request topic
     _REQ_TOPIC_HOSTING_HISTORY = "{0}/hosting_history".format(_SERVICE_TYPE)
     #: The "ip monitor" DXL request topic
     _REQ_TOPIC_IP_MONITOR = "{0}/ip_monitor".format(_SERVICE_TYPE)
     #: The "ip registrant monitor" DXL request topic
-    _REQ_TOPIC_IP_REGISTRANT_MONITOR = "{0}/ip_registrant_monitor".format(_SERVICE_TYPE)
+    _REQ_TOPIC_IP_REGISTRANT_MONITOR = "{0}/ip_registrant_monitor".format(
+        _SERVICE_TYPE)
     #: The "iris" DXL request topic
     _REQ_TOPIC_IRIS = "{0}/iris".format(_SERVICE_TYPE)
     #: The "name server monitor" DXL request topic
-    _REQ_TOPIC_NAME_SERVER_MONITOR = "{0}/name_server_monitor".format(_SERVICE_TYPE)
+    _REQ_TOPIC_NAME_SERVER_MONITOR = "{0}/name_server_monitor".format(
+        _SERVICE_TYPE)
     #: The "parsed whois" DXL request topic
     _REQ_TOPIC_PARSED_WHOIS = "{0}/parsed_whois".format(_SERVICE_TYPE)
     #: The "phisheye" DXL request topic
     _REQ_TOPIC_PHISHEYE = "{0}/phisheye".format(_SERVICE_TYPE)
     #: The "phisheye term list" DXL request topic
-    _REQ_TOPIC_PHISHEYE_TERM_LIST = "{0}/phisheye_term_list".format(_SERVICE_TYPE)
+    _REQ_TOPIC_PHISHEYE_TERM_LIST = "{0}/phisheye_term_list".format(
+        _SERVICE_TYPE)
     #: The "registrant monitor" DXL request topic
-    _REQ_TOPIC_REGISTRANT_MONITOR = "{0}/registrant_monitor".format(_SERVICE_TYPE)
+    _REQ_TOPIC_REGISTRANT_MONITOR = "{0}/registrant_monitor".format(
+        _SERVICE_TYPE)
     #: The "reputation" DXL request topic
     _REQ_TOPIC_REPUTATION = "{0}/reputation".format(_SERVICE_TYPE)
     #: The "reverse ip" DXL request topic
@@ -48,7 +53,8 @@ class DomainToolsApiClient(Client):
     #: The "reverse ip whois" DXL request topic
     _REQ_TOPIC_REVERSE_IP_WHOIS = "{0}/reverse_ip_whois".format(_SERVICE_TYPE)
     #: The "reverse name server" DXL request topic
-    _REQ_TOPIC_REVERSE_NAME_SERVER = "{0}/reverse_name_server".format(_SERVICE_TYPE)
+    _REQ_TOPIC_REVERSE_NAME_SERVER = "{0}/reverse_name_server".format(
+        _SERVICE_TYPE)
     #: The "reverse whois" DXL request topic
     _REQ_TOPIC_REVERSE_WHOIS = "{0}/reverse_whois".format(_SERVICE_TYPE)
     #: The "whois" DXL request topic
@@ -121,22 +127,14 @@ class DomainToolsApiClient(Client):
     #: The include reasons request parameter
     _PARAM_INCLUDE_REASONS = "include_reasons"
 
-    def __init__(self, dxl_client):
-        """
-        Constructor parameters:
-
-        :param dxl_client: The DXL client to use for communication with the fabric
-        """
-        super(DomainToolsApiClient, self).__init__(dxl_client)
-
     @staticmethod
     def _add_string_param_by_name(req_dict, param_name, param_value,
                                   delimiter=""):
         """
         Adds the specified parameter to the dictionary as a string. If the
         param_value is a list, tuple, or set, the elements from the param_value
-        are flattened into a string, with each element delimited by the value in
-        the delimiter parameter.
+        are flattened into a string, with each element delimited by the value
+        in the delimiter parameter.
 
         :param req_dict: The dictionary
         :param param_name: The name of the parameter
@@ -146,7 +144,7 @@ class DomainToolsApiClient(Client):
         if param_value is not None:
             req_dict[param_name] = \
                 delimiter.join(param_value) \
-                if (type(param_value) in (list, tuple, set)) \
+                if (isinstance(param_value, (list, tuple, set))) \
                 else str(param_value)
 
     @staticmethod
@@ -171,8 +169,8 @@ class DomainToolsApiClient(Client):
         """
         Adds the specified query parameter to the dictionary. If the
         param_value is a list, tuple, or set, the elements from the param_value
-        are flattened into a string, with each element delimited by the value in
-        the delimiter parameter.
+        are flattened into a string, with each element delimited by the value
+        in the delimiter parameter.
 
         :param req_dict: The dictionary
         :param query: The query value
@@ -278,18 +276,18 @@ class DomainToolsApiClient(Client):
             include_total_count)
 
     @staticmethod
-    def _add_ip_param(req_dict, ip):
+    def _add_ip_param(req_dict, ip_address):
         """
         Adds the specified ip parameter to the dictionary
 
         :param req_dict: The dictionary
-        :param ip: The ip value
+        :param ip_address: The ip value
         """
         DomainToolsApiClient._add_string_param_by_name(
-            req_dict, DomainToolsApiClient._PARAM_IP, ip)
+            req_dict, DomainToolsApiClient._PARAM_IP, ip_address)
 
     @staticmethod
-    def _add_limit_param(req_dict, ip):
+    def _add_limit_param(req_dict, limit):
         """
         Adds the specified limit parameter to the dictionary
 
@@ -297,7 +295,7 @@ class DomainToolsApiClient(Client):
         :param limit: The limit value
         """
         DomainToolsApiClient._add_string_param_by_name(
-            req_dict, DomainToolsApiClient._PARAM_LIMIT, ip)
+            req_dict, DomainToolsApiClient._PARAM_LIMIT, limit)
 
     @staticmethod
     def _add_domain_param(req_dict, domain, delimiter=""):
@@ -338,7 +336,8 @@ class DomainToolsApiClient(Client):
         req_dict_with_format["format"] = "json" \
             if out_format == "dict" else out_format
 
-        # Set the payload on the request message (Python dictionary to JSON payload)
+        # Set the payload on the request message (Python dictionary to JSON
+        # payload)
         MessageUtils.dict_to_json_payload(request, req_dict_with_format)
 
         # Perform a synchronous DXL request
@@ -359,10 +358,10 @@ class DomainToolsApiClient(Client):
         and `DomainTools API <https://www.domaintools.com/resources/api-documentation/account-information/>`__
         documentation for more information.
 
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -382,22 +381,22 @@ class DomainToolsApiClient(Client):
         documentation for more information.
 
         :param query: One or more domain search terms.
-        :type query: str or list, set, or tuple with str elements
+        :type query: str or list(str) or tuple(str) or set(str)
         :param exclude: [``optional``] : Domain names with these words will be
             excluded from the result set.
-        :type exclude: str or list, set, or tuple with str elements
+        :type exclude: str or list(str) or tuple(str) or set(str)
         :param str domain_status: [``optional``] : Scope of the domain names to
             search. By default, the API will search both new domain names and
             domain names which are now on-hold (pending delete). To narrow your
             search to only one of these status codes, set this parameter to
             either ``new`` or ``on-hold``.
-        :param int days_back: [``optional``] : Use this parameter in exceptional
-            circumstances where you need to search domains registered prior to
-            the current date.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param int days_back: [``optional``] : Use this parameter in
+            exceptional circumstances where you need to search domains
+            registered prior to the current date.
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -418,11 +417,12 @@ class DomainToolsApiClient(Client):
         and `DomainTools API <https://www.domaintools.com/resources/api-documentation/domain-profile/>`__
         documentation for more information.
 
-        :param str query: Domain name for which to retrieve profile information.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str query: Domain name for which to retrieve profile
+            information.
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -445,10 +445,10 @@ class DomainToolsApiClient(Client):
         documentation for more information.
 
         :param query: One or more domain search terms.
-        :type query: str or list, set, or tuple with str elements
+        :type query: str or list(str) or tuple(str) or set(str)
         :param exclude_query: [``optional``] : Domain names with these words
             will be excluded from the result set.
-        :type exclude_query: str, list, set, or tuple
+        :type exclude_query: str or list(str) or tuple(str) or set(str)
         :param int max_length: [``optional``] : Limit the maximum domain
             character count.
         :param int min_length: [``optional``] : Limit the minimum domain
@@ -467,10 +467,10 @@ class DomainToolsApiClient(Client):
             end with the query term.
         :param int page: [``optional``] : Sets the page of results to retrieve
             from the server.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -510,10 +510,10 @@ class DomainToolsApiClient(Client):
         documentation for more information.
 
         :param str query: Domain name for which to retrieve suggestions.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -534,10 +534,10 @@ class DomainToolsApiClient(Client):
         documentation for more information.
 
         :param str query: Domain name to retrieve hosting history for.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -557,15 +557,15 @@ class DomainToolsApiClient(Client):
         documentation for more information.
 
         :param str query: IP address to query. For example: ``65.55.53.233``.
-        :param int days_back: [``optional``] : Use this parameter in exceptional
-            circumstances where you need to search domains registered prior to
-            the current date.
+        :param int days_back: [``optional``] : Use this parameter in
+            exceptional circumstances where you need to search domains
+            registered prior to the current date.
         :param int page: [``optional``] : Sets the page of results to retrieve
             from the server.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -590,10 +590,10 @@ class DomainToolsApiClient(Client):
         documentation for more information.
 
         :param query: One or more free text query terms.
-        :type query: str or list, set, or tuple with str elements
-        :param int days_back: [``optional``] : Use this parameter in exceptional
-            circumstances where you need to search domains registered prior to
-            the current date.
+        :type query: str or list(str) or tuple(str) or set(str)
+        :param int days_back: [``optional``] : Use this parameter in
+            exceptional circumstances where you need to search domains
+            registered prior to the current date.
         :param str search_type: [``optional``] : Type of changes to return.
             Valid options are ``all``, ``additions``, ``removals``, and
             ``modifications``.  Defaults to ``all``.
@@ -609,10 +609,10 @@ class DomainToolsApiClient(Client):
         :param bool include_total_count: [``optional``] : Return the total
             number of results for a query. This should typically be used only
             for the first page of a large result set.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -634,7 +634,7 @@ class DomainToolsApiClient(Client):
                                     self._REQ_TOPIC_IP_REGISTRANT_MONITOR,
                                     out_format)
 
-    def iris(self, domain=None, ip=None, email=None, nameserver=None,
+    def iris(self, domain=None, ip_address=None, email=None, nameserver=None,
              registrar=None, registrant=None, registrant_org=None,
              out_format="dict"):
         """
@@ -645,33 +645,33 @@ class DomainToolsApiClient(Client):
         documentation for more information.
 
         :param domain: [``optional``] : One or more domains.
-        :type domain: str or list, set, or tuple with str elements
-        :param str ip: [``optional``] : A single full IP address - for example:
-            ``65.55.53.233`` - that will be matched to the A record for
-            a domain name.
+        :type domain: str or list(str) or tuple(str) or set(str)
+        :param str ip_address: [``optional``] : A single full IP address - for
+            example: ``65.55.53.233`` - that will be matched to the A record
+            for a domain name.
         :param str email: [``optional``] : A single email address. The results
             will match email addresses in the Admin, Billing, Registrant, and
             Technical Contacts, along with SSL, Whois Records, and DNS/SOA
             records.
-        :param str nameserver: [``optional``] : The exact name of the server you
-            wish to query.
+        :param str nameserver: [``optional``] : The exact name of the server
+            you wish to query.
         :param str registrar: [``optional``] : Word search on the domain
             registrar.
         :param str registrant: [``optional``] : Word search on the Whois
             registrant field.
         :param str registrant_org: [``optional``] : Word search on the Whois
             registrant organization field.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
         """
         req_dict = {}
         self._add_domain_param(req_dict, domain, ",")
-        self._add_ip_param(req_dict, ip)
+        self._add_ip_param(req_dict, ip_address)
 
         DomainToolsApiClient._add_string_param_by_name(
             req_dict, DomainToolsApiClient._PARAM_EMAIL, email)
@@ -682,7 +682,8 @@ class DomainToolsApiClient(Client):
         DomainToolsApiClient._add_string_param_by_name(
             req_dict, DomainToolsApiClient._PARAM_REGISTRANT, registrant)
         DomainToolsApiClient._add_string_param_by_name(
-            req_dict, DomainToolsApiClient._PARAM_REGISTRANT_ORG, registrant_org)
+            req_dict, DomainToolsApiClient._PARAM_REGISTRANT_ORG,
+            registrant_org)
 
         return self._invoke_service(req_dict, self._REQ_TOPIC_IRIS, out_format)
 
@@ -697,15 +698,15 @@ class DomainToolsApiClient(Client):
 
         :param str query: Hostname of the Name Server to query. For example:
             ``dynect.net``.
-        :param int days_back: [``optional``] : Use this parameter in exceptional
-            circumstances where you need to search domains registered prior to
-            the current date.
+        :param int days_back: [``optional``] : Use this parameter in
+            exceptional circumstances where you need to search domains
+            registered prior to the current date.
         :param int page: [``optional``] : Sets the page of results to retrieve
             from the server.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -729,10 +730,10 @@ class DomainToolsApiClient(Client):
 
         :param str query: Hostname of the Name Server to query. For example:
             ``dynect.net``.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -752,13 +753,13 @@ class DomainToolsApiClient(Client):
         documentation for more information.
 
         :param str query: Term for which the day's domains are desired.
-        :param int days_back: [``optional``] : Use this parameter in exceptional
-            circumstances where you need to search domains registered prior to
-            the current date.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param int days_back: [``optional``] : Use this parameter in
+            exceptional circumstances where you need to search domains
+            registered prior to the current date.
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -778,13 +779,12 @@ class DomainToolsApiClient(Client):
         and `DomainTools API <https://www.domaintools.com/resources/api-documentation/phisheye/>`__
         documentation for more information.
 
-        :param str query: Term for which the day's domains are desired.
         :param bool include_inactive: [``optional``] : Use this parameter to
             display terms that may have been inactivated in users' lists.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -801,26 +801,26 @@ class DomainToolsApiClient(Client):
     def registrant_monitor(self, query, exclude=None, days_back=None,
                            limit=None, out_format="dict"):
         """
-        Retrieves information from the ownership (Whois) records of domain names
-        for search terms specified in the ``query`` parameter. See
+        Retrieves information from the ownership (Whois) records of domain
+        names for search terms specified in the ``query`` parameter. See
         `DXL service method <https://github.com/opendxl/opendxl-domaintools-service-python/wiki/Service-Methods#registrant-monitor>`__
         and `DomainTools API <https://www.domaintools.com/resources/api-documentation/registrant-monitor/>`__
         documentation for more information.
 
         :param query: One or more search terms.
-        :type query: str or list, set, or tuple with str elements
+        :type query: str or list(str) or tuple(str) or set(str)
         :param exclude: [``optional``] : Whois records with these words will be
             excluded from the result set.
-        :type exclude: str or list, set, or tuple with str elements
-        :param int days_back: [``optional``] : Use this parameter in exceptional
-            circumstances where you need to search domains registered prior to
-            the current date.
+        :type exclude: str or list(str) or tuple(str) or set(str)
+        :param int days_back: [``optional``] : Use this parameter in
+            exceptional circumstances where you need to search domains
+            registered prior to the current date.
         :param int limit: [``optional``] : Limit the number of matched domain
             names that are returned in your result set.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -846,10 +846,10 @@ class DomainToolsApiClient(Client):
         :param str query: Input domain for which the risk score is desired.
         :param bool include_reasons: [``optional``] : Return a list of reasons
             for the risk score determination.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -870,13 +870,14 @@ class DomainToolsApiClient(Client):
         and `DomainTools API <https://www.domaintools.com/resources/api-documentation/reverse-ip/>`__
         documentation for more information.
 
-        :param str domain: Domain name for which the list of containers is desired.
+        :param str domain: Domain name for which the list of containers is
+            desired.
         :param int limit: [``optional``] : Limit the number of matched domain
             names that are returned in your result set.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -888,42 +889,45 @@ class DomainToolsApiClient(Client):
         return self._invoke_service(req_dict, self._REQ_TOPIC_REVERSE_IP,
                                     out_format)
 
-    def host_domains(self, ip, limit=None, out_format="dict"):
+    def host_domains(self, ip_address, limit=None, out_format="dict"):
         """
         Retrieves a list of containers which share the same IP address. See
         `DXL service method <https://github.com/opendxl/opendxl-domaintools-service-python/wiki/Service-Methods#host-domains>`__
         and `DomainTools API <https://www.domaintools.com/resources/api-documentation/reverse-ip/>`__
         documentation for more information.
 
-        :param str ip: IP address for which the list of containers is desired.
+        :param str ip_address: IP address for which the list of containers is
+            desired.
         :param int limit: [``optional``] : Limit the number of matched domain
             names that are returned in your result set.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
         """
         req_dict = {}
-        self._add_ip_param(req_dict, ip)
+        self._add_ip_param(req_dict, ip_address)
         self._add_limit_param(req_dict, limit)
 
         return self._invoke_service(req_dict, self._REQ_TOPIC_HOST_DOMAINS,
                                     out_format)
 
-    def reverse_ip_whois(self, query=None, ip=None, country=None, server=None,
-                         include_total_count=None, page=None, out_format="dict"):
+    def reverse_ip_whois(self, query=None, ip_address=None, country=None,
+                         server=None, include_total_count=None, page=None,
+                         out_format="dict"):
         """
-        Retrieves a list of IP ranges that are owned by an Organization.  Either
-        an ``query`` or an ``ip`` parameter must be specified, but not both. See
+        Retrieves a list of IP ranges that are owned by an Organization. Either
+        a ``query`` or an ``ip_address`` parameter must be specified, but not
+        both. See
         `DXL service method <https://github.com/opendxl/opendxl-domaintools-service-python/wiki/Service-Methods#reverse-ip-whois>`__
         and `DomainTools API <https://www.domaintools.com/resources/api-documentation/reverse-ip-whois/>`__
         documentation for more information.
 
-        :param query: [``optional``] : One or more search terms. The query terms
-            have the following rules:
+        :param query: [``optional``] : One or more search terms. The query
+            terms have the following rules:
             +term: Term must be included in the results.
             -term: Term must not be included in the results.
             term*: Term as a prefix must be included in the results.
@@ -931,9 +935,9 @@ class DomainToolsApiClient(Client):
             For example: if you provide a query of ``google inc`` then only
             results that include both items in the order provided will be
             included.
-        :type query: str or list, set, or tuple with str elements
-        :param str ip: [``optional``] : Returns the most recent cached IP Whois
-            record for the allocated range the IP is in.
+        :type query: str or list(str) or tuple(str) or set(str)
+        :param str ip_address: [``optional``] : Returns the most recent cached
+            ip whois record for the allocated range the ip address is in.
         :param str country: [``optional``] : Limits results to IP addresses
             allocated to an entity with a particular country. Valid options are
             ISO 3166-1 two character country codes.
@@ -944,17 +948,17 @@ class DomainToolsApiClient(Client):
             for the first page of a large result set.
         :param int page: [``optional``] : Sets the page of results to retrieve
             from the server.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
         """
         req_dict = {}
         self._add_query_param(req_dict, query, " ")
-        self._add_ip_param(req_dict, ip)
+        self._add_ip_param(req_dict, ip_address)
         self._add_country_param(req_dict, country)
         self._add_server_param(req_dict, server)
         self._add_include_total_count_param(req_dict, include_total_count)
@@ -974,10 +978,10 @@ class DomainToolsApiClient(Client):
         :param str query: Domain name or a name server to query.
         :param int limit: [``optional``] : Limit the number of matched domain
             names that are returned in your result set.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -1000,10 +1004,10 @@ class DomainToolsApiClient(Client):
         documentation for more information.
 
         :param query: One or more terms to search for in the Whois record.
-        :type query: str or list, set, or tuple with str elements
+        :type query: str or list(str) or tuple(str) or set(str)
         :param exclude: [``optional``] : Domain names with Whois records that
             match these terms will be excluded from the result set.
-        :type exclude: str or list, set, or tuple with str elements
+        :type exclude: str or list(str) or tuple(str) or set(str)
         :param str scope: [``optional``] : Use ``current`` to include only
             current Whois records or ``historic`` to include both current and
             historic Whois records in the results. The default is ``current``.
@@ -1011,10 +1015,10 @@ class DomainToolsApiClient(Client):
             and retail price of the query if you have per-domain pricing access
             or ``purchase`` to include the complete list of domain names that
             match the query.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -1033,17 +1037,17 @@ class DomainToolsApiClient(Client):
 
     def whois(self, query, out_format="dict"):
         """
-        Retrieves the most recent Whois record for the domain name or IP address
-        provided in the ``query`` parameter. See
+        Retrieves the most recent Whois record for the domain name or IP
+        address provided in the ``query`` parameter. See
         `DXL service method <https://github.com/opendxl/opendxl-domaintools-service-python/wiki/Service-Methods#whois-lookup>`__
         and `DomainTools API <https://www.domaintools.com/resources/api-documentation/whois-lookup/>`__
         documentation for more information.
 
         :param str query: Domain name or IP address to query.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode
@@ -1063,10 +1067,10 @@ class DomainToolsApiClient(Client):
         documentation for more information.
 
         :param str query: Domain name to query.
-        :param str out_format: [``optional``] : The format in which the response
-            output should be rendered.  Available formats include ``dict``,
-            ``json``, and ``xml``. For ``dict``, the return type is a Python
-            dictionary. For the other formats, the return type is a
+        :param str out_format: [``optional``] : The format in which the
+            response output should be rendered.  Available formats include
+            ``dict``, ``json``, and ``xml``. For ``dict``, the return type is a
+            Python dictionary. For the other formats, the return type is a
             ``unicode``.
         :return: Response data.
         :rtype: dict or unicode

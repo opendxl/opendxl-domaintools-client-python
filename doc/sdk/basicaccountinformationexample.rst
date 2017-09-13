@@ -86,8 +86,8 @@ The majority of the sample code is shown below:
             resp_dict = client.account_information()
 
             # Print out the response
-            print "Response in default output format:\n{0}".format(
-                MessageUtils.dict_to_json(resp_dict, pretty_print=True))
+            print("Response in default output format:\n{}".format(
+                MessageUtils.dict_to_json(resp_dict, pretty_print=True)))
 
 
 Once a connection is established to the DXL fabric, a
@@ -112,15 +112,15 @@ other formats that the DomainTools service supports (``json`` and ``xml``):
         resp_json = client.account_information(out_format="json")
 
         # Print out the response
-        print "Response in json output format:\n{0}".format(
+        print("Response in json output format:\n{}".format(
             MessageUtils.dict_to_json(MessageUtils.json_to_dict(resp_json),
-                                      pretty_print=True))
+                                      pretty_print=True)))
 
         # Invoke 'account_information' method on service, in 'xml' output
         resp_xml = client.account_information(out_format="xml")
 
         # Print out the response
-        print "Response in xml output format:\n{0}".format(resp_xml)
+        print("Response in xml output format:\n{}".format(resp_xml))
 
 
 For each of the response formats other than ``dict``, the response type is a
