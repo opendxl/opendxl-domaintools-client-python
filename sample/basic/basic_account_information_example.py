@@ -53,9 +53,3 @@ with DxlClient(config) as dxl_client:
 
     # Print out the response
     print "Response in xml output format:\n{0}".format(resp_xml)
-
-    # Invoke 'account_information' method on service, in 'html' output
-    resp_html = client.account_information(out_format="html")
-
-    # Print out the response
-    print "Response in html output format:\n{0}".format(resp_html)
