@@ -149,7 +149,7 @@ The majority of the sample code is shown below:
 
     .. code-block:: python
 
-         # Create the client
+        # Create the client
         with DxlClient(config) as dxl_client:
 
             # Connect to the fabric
@@ -164,8 +164,8 @@ The majority of the sample code is shown below:
             resp_dict = client.parsed_whois("domaintools.com")
 
             # Print out the response (convert dictionary to JSON for pretty printing)
-            print "Response:\n{0}".format(
-                MessageUtils.dict_to_json(resp_dict, pretty_print=True))
+            print("Response:\n{}".format(
+                MessageUtils.dict_to_json(resp_dict, pretty_print=True)))
 
 
 Once a connection is established to the DXL fabric, a

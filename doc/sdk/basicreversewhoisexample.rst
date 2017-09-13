@@ -64,8 +64,8 @@ The majority of the sample code is shown below:
                                              exclude=["Dont", "Want", "This", "One"])
 
             # Print out the response (convert dictionary to JSON for pretty printing)
-            print "Response:\n{0}".format(
-                MessageUtils.dict_to_json(resp_dict, pretty_print=True))
+            print("Response:\n{}".format(
+                MessageUtils.dict_to_json(resp_dict, pretty_print=True)))
 
 
 Once a connection is established to the DXL fabric, a

@@ -47,15 +47,23 @@ The majority of the sample code is shown below:
 
     .. code-block:: python
 
-        # Create client wrapper
-        client = DomainToolsApiClient(dxl_client)
+        # Create the client
+        with DxlClient(config) as dxl_client:
 
-        # Invoke 'host domains' method on service
-        resp_dict = client.host_domains("64.246.165.240")
+            # Connect to the fabric
+            dxl_client.connect()
 
-        # Print out the response (convert dictionary to JSON for pretty printing)
-        print "Response:\n{0}".format(
-            MessageUtils.dict_to_json(resp_dict, pretty_print=True))
+            logger.info("Connected to DXL fabric.")
+
+            # Create client wrapper
+            client = DomainToolsApiClient(dxl_client)
+
+            # Invoke 'host domains' method on service
+            resp_dict = client.host_domains("64.246.165.240")
+
+            # Print out the response (convert dictionary to JSON for pretty printing)
+            print("Response:\n{}".format(
+                MessageUtils.dict_to_json(resp_dict, pretty_print=True)))
 
 
 Once a connection is established to the DXL fabric, a

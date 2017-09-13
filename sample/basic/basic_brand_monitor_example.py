@@ -34,8 +34,9 @@ with DxlClient(config) as dxl_client:
     client = DomainToolsApiClient(dxl_client)
 
     # Invoke 'brand monitor' example method on service
-    resp_dict = client.brand_monitor("domaintools.com", exclude=["auto", "best"])
-    
+    resp_dict = client.brand_monitor("domaintools.com", exclude=["auto",
+                                                                 "best"])
+
     # Print out the response (convert dictionary to JSON for pretty printing)
-    print "Response:\n{0}".format(
-        MessageUtils.dict_to_json(resp_dict, pretty_print=True))
+    print("Response:\n{}".format(
+        MessageUtils.dict_to_json(resp_dict, pretty_print=True)))
