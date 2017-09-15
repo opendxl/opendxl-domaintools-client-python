@@ -1,0 +1,17 @@
+dxldomaintoolsclient package
+============================
+
+Submodules
+----------
+
+.. toctree::
+
+   dxldomaintoolsclient.client
+
+Module contents
+---------------
+
+.. automodule:: dxldomaintoolsclient
+    :members:
+    :undoc-members:
+    :show-inheritance:
