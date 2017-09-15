@@ -1,6 +1,0 @@
-MANIFEST
-dist/
-sample/dxlclient.config
-*.pyc
-build/
-dxldomaintoolsclient.egg-info/
