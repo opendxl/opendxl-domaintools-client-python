@@ -95,6 +95,6 @@ which contains the results of the PhishEye query.
 From the DomainTools
 `PhishEye Term List Documentation <https://www.domaintools.com/resources/api-documentation/phisheye/>`_:
 
-        This provides a list of terms that are set up for this account. The
+        `"This provides a list of terms that are set up for this account. The
         PhishEye API is only available via our Enterprise Solutions team, and is
-        not included in a membership.
+        not included in a membership."`

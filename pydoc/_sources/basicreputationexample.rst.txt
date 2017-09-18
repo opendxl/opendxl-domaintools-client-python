@@ -76,5 +76,5 @@ which contains the results of the reputation query.
 From the DomainTools
 `Reputation Documentation <https://www.domaintools.com/resources/api-documentation/reputation/>`_:
 
-    Provides a risk score for the domain. The Reputation API is only available
-    via our Enterprise Solutions team, and is not included in a membership.
+    `"Provides a risk score for the domain. The Reputation API is only available
+    via our Enterprise Solutions team, and is not included in a membership."`

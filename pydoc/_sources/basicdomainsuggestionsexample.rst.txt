@@ -108,7 +108,7 @@ which contains the results of the domain suggestions query.
 From the DomainTools
 `Domain Suggestions documentation <https://www.domaintools.com/resources/api-documentation/domain-suggestions/>`_:
 
-    The Domain Suggestions API provides a list of domain names that are similar
+    `"The Domain Suggestions API provides a list of domain names that are similar
     to the words in a query string. It has a bias toward available domains and
     provides suggestions for .com, .net, .org, .info, .biz, and .us top level
-    domain names.
+    domain names."`

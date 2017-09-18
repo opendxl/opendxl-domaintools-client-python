@@ -132,9 +132,9 @@ which contains the results of the domain search.
 From the DomainTools
 `Domain Search documentation <https://www.domaintools.com/resources/api-documentation/domain-search/>`_:
 
-    The Domain Search API searches for domain names that match your specific
+    `"The Domain Search API searches for domain names that match your specific
     search string. Unlike Domain Suggestions, Domain Search finds currently
     registered or previously registered domain names that are either currently
     registered or have been registered in the past under one of the major gTLD's
     (.com, .net, .org, .info, .us, or .biz), many country code TLDs, or the new
-    gTLDs.
+    gTLDs."`

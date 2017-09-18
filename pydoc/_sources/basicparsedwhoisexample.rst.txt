@@ -183,8 +183,8 @@ which contains the results of the parsed whois query.
 From the DomainTools
 `Parsed Whois documentation <https://www.domaintools.com/resources/api-documentation/parsed-whois/>`_:
 
-        The Parsed Whois API provides parsed information extracted from the raw
+        `"The Parsed Whois API provides parsed information extracted from the raw
         Whois record. The API is optimized to quickly retrieve the Whois record,
         group important data together and return a well-structured format. The
         Parsed Whois API is ideal for anyone wishing to search for, index, or
-        cross-reference data from one or multiple Whois records.
+        cross-reference data from one or multiple Whois records."`

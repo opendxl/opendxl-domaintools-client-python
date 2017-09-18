@@ -79,6 +79,6 @@ which contains the results of the ip monitor query.
 From the DomainTools
 `IP Monitor documentation <https://www.domaintools.com/resources/api-documentation/ip-monitor/>`_:
 
-    The IP Monitor API searches the daily activity of all our monitored TLDs on
+    `"The IP Monitor API searches the daily activity of all our monitored TLDs on
     any given IP address. New, Deleted and Transferred domains records can be
-    queried up to 6 days in the past.
+    queried up to 6 days in the past."`

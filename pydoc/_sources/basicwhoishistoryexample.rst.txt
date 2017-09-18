@@ -115,5 +115,5 @@ which contains the results of the whois query.
 From the DomainTools
 `Whois History Documentation <https://www.domaintools.com/resources/api-documentation/whois-history/>`_:
 
-    The Whois History API provides a list of historic Whois records for a domain
-    name.
+    `"The Whois History API provides a list of historic Whois records for a domain
+    name."`

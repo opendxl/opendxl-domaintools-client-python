@@ -107,7 +107,7 @@ which contains the results of the registrant monitor query.
 From the DomainTools
 `Registrant Monitor Documentation <https://www.domaintools.com/resources/api-documentation/registrant-monitor/>`_:
 
-    The Registrant Monitor API searches the ownership (Whois) records of domain
+    `"The Registrant Monitor API searches the ownership (Whois) records of domain
     names for specific search terms. The product is ideal for monitoring
     specific domain owners (such as "DomainTools LLC") to be alerted whenever
-    their information appears in a newly-registered domain name.
+    their information appears in a newly-registered domain name."`

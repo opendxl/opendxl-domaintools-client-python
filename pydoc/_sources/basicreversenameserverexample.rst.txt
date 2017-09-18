@@ -90,5 +90,5 @@ which contains the results of the reverse name server query.
 From the DomainTools
 `Reverse Name Server Documentation <https://www.domaintools.com/resources/api-documentation/reverse-name-server/>`_:
 
-        The Reverse Name Server API provides a list of domain names that share
-        the same primary or secondary name server.
+        `"The Reverse Name Server API provides a list of domain names that share
+        the same primary or secondary name server."`

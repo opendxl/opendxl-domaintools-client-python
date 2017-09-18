@@ -95,5 +95,5 @@ which contains the results of the whois query.
 From the DomainTools
  `Whois Lookup Documentation <https://www.domaintools.com/resources/api-documentation/whois-lookup/>`_:
 
-    The Whois Lookup API provides the ownership record for a domain name or IP
-    address with basic registration details.
+    `"The Whois Lookup API provides the ownership record for a domain name or IP
+    address with basic registration details."`

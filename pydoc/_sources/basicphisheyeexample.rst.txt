@@ -118,7 +118,7 @@ which contains the results of the PhishEye query.
 From the DomainTools
 `PhishEye documentation <https://www.domaintools.com/resources/api-documentation/phisheye/>`_:
 
-        The PhishEye API provides programmatic access to daily monitor results
+        `"The PhishEye API provides programmatic access to daily monitor results
         from the DomainTools PhishEye product. The PhishEye API is only
         available via our Enterprise Solutions team, and is not included in a
-        membership.
+        membership."`

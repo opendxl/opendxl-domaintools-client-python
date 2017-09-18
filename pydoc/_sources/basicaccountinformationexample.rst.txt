@@ -165,5 +165,5 @@ look similar to the following:
 From the DomainTools
 `Account Information documentation <https://www.domaintools.com/resources/api-documentation/account-information/>`_:
 
-        The Account Information API provides a quick and easy way to get a snapshot of
-        API product usage for an account. Usage is broken down by day and by month.
+        `"The Account Information API provides a quick and easy way to get a snapshot of
+        API product usage for an account. Usage is broken down by day and by month."`

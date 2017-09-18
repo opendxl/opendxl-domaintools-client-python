@@ -81,7 +81,7 @@ which contains the results of the host domains query.
 From the DomainTools
 `Host Domains documentation <https://www.domaintools.com/resources/api-documentation/reverse-ip/>`_:
 
-    The Reverse IP API provides a list of domain names that share the same
+    `"The Reverse IP API provides a list of domain names that share the same
     Internet host (i.e. the same IP address). You can request an IP address
     directly, or you can provide a domain name; if you provide a domain name,
-    the API will respond with the list of other domains that share the same IP.
+    the API will respond with the list of other domains that share the same IP."`

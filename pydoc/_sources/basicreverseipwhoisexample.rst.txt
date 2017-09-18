@@ -113,6 +113,6 @@ which contains the results of the reverse ip whois query.
 From the DomainTools
 `Reverse IP Whois Documentation <https://www.domaintools.com/resources/api-documentation/reverse-ip-whois/>`_:
 
-        The Reverse IP Whois API provides a list of IP ranges that are owned by
+        `"The Reverse IP Whois API provides a list of IP ranges that are owned by
         an Organization. You can enter an organization’s name and receive a list
-        of all of the organization’s currently owned IP ranges.
+        of all of the organization’s currently owned IP ranges."`
