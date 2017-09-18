@@ -92,5 +92,5 @@ which contains the results of the reverse whois query.
 From the DomainTools
 `Reverse Whois Documentation <https://www.domaintools.com/resources/api-documentation/reverse-whois/>`_:
 
-    The Reverse Whois API provides a list of domain names that share the same
-    Registrant Information.
+    `"The Reverse Whois API provides a list of domain names that share the same
+    Registrant Information."`

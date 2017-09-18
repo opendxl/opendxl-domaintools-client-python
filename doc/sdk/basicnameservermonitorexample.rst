@@ -94,6 +94,6 @@ which contains the results of the name server monitor query.
 From the DomainTools
 `Name Server Monitor documentation <https://www.domaintools.com/resources/api-documentation/name-server-monitor/>`_:
 
-        The Name Server Monitor API searches the daily activity of all our
+        `"The Name Server Monitor API searches the daily activity of all our
         monitored TLDs on any given name server. New, Deleted and Transferred
-        domains records can be queried up to 6 days in the past.
+        domains records can be queried up to 6 days in the past."`

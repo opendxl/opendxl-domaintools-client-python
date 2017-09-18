@@ -85,8 +85,8 @@ which contains the results of the brand monitor query.
 From the DomainTools
 `Brand Monitor documentation <https://www.domaintools.com/resources/api-documentation/brand-monitor/>`_:
 
-        The Brand Monitor API will search across all new domain registrations
+        `"The Brand Monitor API will search across all new domain registrations
         worldwide, and return result sets consisting of domain names that
         contain a customer's brand or monitored word/string. The Brand Monitor
         API looks at country code TLDs and new generic TLDs, as well as the
-        usual suspects of .COM, .NET,.ORG, etc.
+        usual suspects of .COM, .NET,.ORG, etc."`

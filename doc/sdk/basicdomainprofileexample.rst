@@ -139,8 +139,8 @@ which contains the results of the domain profile query.
 From the DomainTools
 `Domain Profile documentation <https://www.domaintools.com/resources/api-documentation/domain-profile/>`_:
 
-    The Domain Profile API provides basic domain name registration details and a
+    `"The Domain Profile API provides basic domain name registration details and a
     preview of additional data available from DomainTools membership and report
     products. The preview data is especially useful for DomainTools affiliates
     who want to show useful information on a domain name or a registrant in
-    their affiliate link.
+    their affiliate link."`

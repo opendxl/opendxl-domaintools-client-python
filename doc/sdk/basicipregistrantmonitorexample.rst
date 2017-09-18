@@ -130,8 +130,8 @@ which contains the results of the ip registrant monitor query.
 From the DomainTools
 `IP Registrant Monitor documentation <https://www.domaintools.com/resources/api-documentation/ip-registrant-monitor/>`_:
 
-    The IP Registrant Monitor API searches the ownership (Whois) records of
+    `"The IP Registrant Monitor API searches the ownership (Whois) records of
     domain names for specific search terms. The product is ideal for monitoring
     specific domain owners (such as "DomainTools LLC") to be alerted whenever
     their information appears in a newly-registered domain name. The API will
-    also alert you to domains that no longer match a specific term.
+    also alert you to domains that no longer match a specific term."`

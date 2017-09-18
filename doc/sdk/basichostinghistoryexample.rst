@@ -131,7 +131,7 @@ which contains the results of the hosting history query.
 From the DomainTools
 `Hosting History documentation <https://www.domaintools.com/resources/api-documentation/hosting-history/>`_:
 
-        The Hosting History API provides a list of changes that have occurred in
+        `"The Hosting History API provides a list of changes that have occurred in
         a Domain Name's registrar, IP address, and name servers. IP and name
         server events include the value before and after the change and indicate
-        the type of action that triggered the event.
+        the type of action that triggered the event."`
