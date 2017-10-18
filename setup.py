@@ -22,7 +22,7 @@ dist = setup(
 
     # Requirements
     install_requires=[
-        "dxlbootstrap",
+        "dxlbootstrap>=0.1.3",
         "dxlclient"
     ],
 
@@ -38,7 +38,11 @@ dist = setup(
     # Packages
     packages=[
         "dxldomaintoolsclient",
-    ],
+        "dxldomaintoolsclient._config",
+        "dxldomaintoolsclient._config.sample"],
+
+    package_data={
+        "dxldomaintoolsclient._config.sample" : ['*']},
 
     # Details
     url="http://www.mcafee.com",
