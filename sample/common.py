@@ -4,6 +4,7 @@ This includes the defining the path to the configuration file used to
 initialize the DXL client in addition to setting up the logger appropriately.
 """
 
+from __future__ import absolute_import
 import os
 import logging
 

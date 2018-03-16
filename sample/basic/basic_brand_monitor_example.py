@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from __future__ import print_function
 import logging
 import os
 import sys
@@ -38,5 +40,5 @@ with DxlClient(config) as dxl_client:
                                                                  "best"])
 
     # Print out the response (convert dictionary to JSON for pretty printing)
-    print("Response:\n{}".format(
-        MessageUtils.dict_to_json(resp_dict, pretty_print=True)))
+    print(("Response:\n{}".format(
+        MessageUtils.dict_to_json(resp_dict, pretty_print=True))))

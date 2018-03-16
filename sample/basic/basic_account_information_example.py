@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from __future__ import print_function
 import logging
 import os
 import sys
@@ -38,19 +40,19 @@ with DxlClient(config) as dxl_client:
     resp_dict = client.account_information()
 
     # Print out the response
-    print("Response in default output format:\n{0}".format(
-        MessageUtils.dict_to_json(resp_dict, pretty_print=True)))
+    print(("Response in default output format:\n{0}".format(
+        MessageUtils.dict_to_json(resp_dict, pretty_print=True))))
 
     # Invoke 'account_information' method on service, in 'json' output
     resp_json = client.account_information(out_format="json")
 
     # Print out the response
-    print("Response in json output format:\n{0}".format(
+    print(("Response in json output format:\n{0}".format(
         MessageUtils.dict_to_json(MessageUtils.json_to_dict(resp_json),
-                                  pretty_print=True)))
+                                  pretty_print=True))))
 
     # Invoke 'account_information' method on service, in 'xml' output
     resp_xml = client.account_information(out_format="xml")
 
     # Print out the response
-    print("Response in xml output format:\n{}".format(resp_xml))
+    print(("Response in xml output format:\n{}".format(resp_xml)))
