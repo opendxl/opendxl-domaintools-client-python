@@ -39,12 +39,12 @@ with DxlClient(config) as dxl_client:
     resp_dict = client.reverse_ip_whois(query=["google", "search"])
 
     # Print out the response (convert dictionary to JSON for pretty printing)
-    print(("Response for free text query:\n{}".format(
-        MessageUtils.dict_to_json(resp_dict, pretty_print=True))))
+    print("Response for free text query:\n{}".format(
+        MessageUtils.dict_to_json(resp_dict, pretty_print=True)))
 
     # Invoke 'reverse_ip_whois' method on service for an ip query
     resp_dict = client.reverse_ip_whois(ip_address="127.0.0.1")
 
     # Print out the response (convert dictionary to JSON for pretty printing)
-    print(("Response for ip query:\n{}".format(
-        MessageUtils.dict_to_json(resp_dict, pretty_print=True))))
+    print("Response for ip query:\n{}".format(
+        MessageUtils.dict_to_json(resp_dict, pretty_print=True)))

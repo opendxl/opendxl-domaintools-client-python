@@ -39,13 +39,13 @@ with DxlClient(config) as dxl_client:
     resp_dict = client.iris(domain=["domaintools.com", "domaintools.net"])
 
     # Print out the response (convert dictionary to JSON for pretty printing)
-    print(("Response for domain query:\n{}".format(
-        MessageUtils.dict_to_json(resp_dict, pretty_print=True))))
+    print("Response for domain query:\n{}".format(
+        MessageUtils.dict_to_json(resp_dict, pretty_print=True)))
 
     # Invoke 'iris' method on service for a query by registrant and nameserver
     resp_dict = client.iris(registrant="fred",
                             nameserver="domainparkingserver.net")
 
     # Print out the response (convert dictionary to JSON for pretty printing)
-    print(("Response for query by registrant and nameserver:\n{}".format(
-        MessageUtils.dict_to_json(resp_dict, pretty_print=True))))
+    print("Response for query by registrant and nameserver:\n{}".format(
+        MessageUtils.dict_to_json(resp_dict, pretty_print=True)))
