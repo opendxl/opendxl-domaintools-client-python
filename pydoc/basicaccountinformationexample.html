@@ -1,26 +1,15 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Basic Account Information Example &#8212; DomainTools API DXL Python Client Library 0.1.0 documentation</title>
-    
+    <title>Basic Account Information Example &#8212; DomainTools API DXL Python Client Library 0.2.0 documentation</title>
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -28,8 +17,7 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Basic Brand Monitor Example" href="basicbrandmonitorexample.html" />
     <link rel="prev" title="Samples Configuration" href="sampleconfig.html" /> 
-  </head>
-  <body role="document">
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -45,7 +33,7 @@
         <li class="right" >
           <a href="sampleconfig.html" title="Samples Configuration"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">DomainTools API DXL Python Client Library 0.1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">DomainTools API DXL Python Client Library 0.2.0 documentation</a> &#187;</li> 
       </ul>
     </div>  
 
@@ -57,9 +45,9 @@
   <div class="section" id="basic-account-information-example">
 <h1>Basic Account Information Example<a class="headerlink" href="#basic-account-information-example" title="Permalink to this headline">¶</a></h1>
 <p>This sample invokes and displays the results of a DomainTools
-&#8220;Account Information&#8221; via DXL. This sample also demonstrates how to request
+&quot;Account Information&quot; via DXL. This sample also demonstrates how to request
 each of the different output formats that the DomainTools service supports:
-<code class="docutils literal"><span class="pre">dict</span></code> (Python dictionary), <code class="docutils literal"><span class="pre">json</span></code>, and <code class="docutils literal"><span class="pre">xml</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">dict</span></code> (Python dictionary), <code class="docutils literal notranslate"><span class="pre">json</span></code>, and <code class="docutils literal notranslate"><span class="pre">xml</span></code>.</p>
 <dl class="docutils">
 <dt>For more information see:</dt>
 <dd><a class="reference external" href="https://www.domaintools.com/resources/api-documentation/account-information/">https://www.domaintools.com/resources/api-documentation/account-information/</a></dd>
@@ -73,17 +61,17 @@ each of the different output formats that the DomainTools service supports:
 </div>
 <div class="section" id="running">
 <h2>Running<a class="headerlink" href="#running" title="Permalink to this headline">¶</a></h2>
-<p>To run this sample execute the <code class="docutils literal"><span class="pre">sample/basic/basic_account_information_example.py</span></code>
+<p>To run this sample execute the <code class="docutils literal notranslate"><span class="pre">sample/basic/basic_account_information_example.py</span></code>
 script as follows:</p>
 <blockquote>
-<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">sample</span><span class="o">/</span><span class="n">basic</span><span class="o">/</span><span class="n">basic_account_information_example</span><span class="o">.</span><span class="n">py</span>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">sample</span><span class="o">/</span><span class="n">basic</span><span class="o">/</span><span class="n">basic_account_information_example</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 </div></blockquote>
-<p>The output for the <code class="docutils literal"><span class="pre">dict</span></code> and <code class="docutils literal"><span class="pre">json</span></code> formats should appear similar to the
+<p>The output for the <code class="docutils literal notranslate"><span class="pre">dict</span></code> and <code class="docutils literal notranslate"><span class="pre">json</span></code> formats should appear similar to the
 following:</p>
 <blockquote>
-<div><div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;response&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;account&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="nt">&quot;active&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
@@ -124,7 +112,7 @@ following:</p>
 <h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
 <p>The majority of the sample code is shown below:</p>
 <blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Create the client</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the client</span>
 <span class="k">with</span> <span class="n">DxlClient</span><span class="p">(</span><span class="n">config</span><span class="p">)</span> <span class="k">as</span> <span class="n">dxl_client</span><span class="p">:</span>
 
     <span class="c1"># Connect to the fabric</span>
@@ -145,19 +133,19 @@ following:</p>
 </div>
 </div></blockquote>
 <p>Once a connection is established to the DXL fabric, a
-<a class="reference internal" href="dxldomaintoolsclient.client.html#dxldomaintoolsclient.client.DomainToolsApiClient" title="dxldomaintoolsclient.client.DomainToolsApiClient"><code class="xref py py-class docutils literal"><span class="pre">dxldomaintoolsclient.client.DomainToolsApiClient</span></code></a> instance is created
+<a class="reference internal" href="dxldomaintoolsclient.client.html#dxldomaintoolsclient.client.DomainToolsApiClient" title="dxldomaintoolsclient.client.DomainToolsApiClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">dxldomaintoolsclient.client.DomainToolsApiClient</span></code></a> instance is created
 which will be used to invoke remote commands on the DomainTools API DXL
 service.</p>
 <p>Next, the
-<a class="reference internal" href="dxldomaintoolsclient.client.html#dxldomaintoolsclient.client.DomainToolsApiClient.account_information" title="dxldomaintoolsclient.client.DomainToolsApiClient.account_information"><code class="xref py py-func docutils literal"><span class="pre">dxldomaintoolsclient.client.DomainToolsApiClient.account_information()</span></code></a>
+<a class="reference internal" href="dxldomaintoolsclient.client.html#dxldomaintoolsclient.client.DomainToolsApiClient.account_information" title="dxldomaintoolsclient.client.DomainToolsApiClient.account_information"><code class="xref py py-func docutils literal notranslate"><span class="pre">dxldomaintoolsclient.client.DomainToolsApiClient.account_information()</span></code></a>
 method is invoked.</p>
-<p>The final step is to display the contents of the returned dictionary (<code class="docutils literal"><span class="pre">dict</span></code>)
+<p>The final step is to display the contents of the returned dictionary (<code class="docutils literal notranslate"><span class="pre">dict</span></code>)
 which contains the results of the account information for the API user that
 the DomainTools DXL service uses.</p>
 <p>The sample code also demonstrates how to request to receive the response in the
-other formats that the DomainTools service supports (<code class="docutils literal"><span class="pre">json</span></code> and <code class="docutils literal"><span class="pre">xml</span></code>):</p>
+other formats that the DomainTools service supports (<code class="docutils literal notranslate"><span class="pre">json</span></code> and <code class="docutils literal notranslate"><span class="pre">xml</span></code>):</p>
 <blockquote>
-<div><div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Invoke &#39;account_information&#39; method on service, in &#39;json&#39; output</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Invoke &#39;account_information&#39; method on service, in &#39;json&#39; output</span>
 <span class="n">resp_json</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">account_information</span><span class="p">(</span><span class="n">out_format</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">)</span>
 
 <span class="c1"># Print out the response</span>
@@ -173,11 +161,11 @@ other formats that the DomainTools service supports (<code class="docutils liter
 </pre></div>
 </div>
 </div></blockquote>
-<p>For each of the response formats other than <code class="docutils literal"><span class="pre">dict</span></code>, the response type is a
-<code class="docutils literal"><span class="pre">str</span></code>. For example, the printed <code class="docutils literal"><span class="pre">str</span></code> content for the <code class="docutils literal"><span class="pre">xml</span></code> format should
+<p>For each of the response formats other than <code class="docutils literal notranslate"><span class="pre">dict</span></code>, the response type is a
+<code class="docutils literal notranslate"><span class="pre">str</span></code>. For example, the printed <code class="docutils literal notranslate"><span class="pre">str</span></code> content for the <code class="docutils literal notranslate"><span class="pre">xml</span></code> format should
 look similar to the following:</p>
 <blockquote>
-<div><div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<div><div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
 <span class="nt">&lt;whoisapi&gt;</span>
     <span class="nt">&lt;response&gt;</span>
         <span class="nt">&lt;account&gt;</span>
@@ -214,8 +202,8 @@ look similar to the following:</p>
 <p>From the DomainTools
 <a class="reference external" href="https://www.domaintools.com/resources/api-documentation/account-information/">Account Information documentation</a>:</p>
 <blockquote>
-<div><cite>&#8220;The Account Information API provides a quick and easy way to get a snapshot of
-API product usage for an account. Usage is broken down by day and by month.&#8221;</cite></div></blockquote>
+<div><cite>&quot;The Account Information API provides a quick and easy way to get a snapshot of
+API product usage for an account. Usage is broken down by day and by month.&quot;</cite></div></blockquote>
 </div>
 </div>
 
@@ -250,12 +238,14 @@ API product usage for an account. Usage is broken down by day and by month.&#822
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -277,12 +267,12 @@ API product usage for an account. Usage is broken down by day and by month.&#822
         <li class="right" >
           <a href="sampleconfig.html" title="Samples Configuration"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">DomainTools API DXL Python Client Library 0.1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">DomainTools API DXL Python Client Library 0.2.0 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, McAfee LLC.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+        &#169; Copyright 2018, McAfee LLC.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
     </div>
   </body>
 </html>
