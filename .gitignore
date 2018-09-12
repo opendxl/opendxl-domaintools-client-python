@@ -3,3 +3,6 @@ dist/
 *.pyc
 build/
 dxldomaintoolsclient.egg-info/
+*.csr
+*.key
+*.crt
